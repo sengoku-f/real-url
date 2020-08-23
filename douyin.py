@@ -2,7 +2,7 @@
 # 如果知道该直播间如“6779127643792280332”形式的room_id，则直接传入room_id。
 # 如果不知道room_id，可以使用手机上打开直播间后，选择“分享--复制链接”，传入如“https://v.douyin.com/qyRqMp/”形式的分享链接。
 
-
+import sys
 import requests
 import re
 
@@ -23,7 +23,8 @@ def get_real_url(rid):
     return real_url
 
 
-rid = input('请输入抖音直播间room_id或分享链接：\n')
+rid = re.search(r'https?:\/\/v.douyin\.com\/(\w{1,7})|(\d{19})', sys.argv[1]).group(0)
+# print(rid)
 real_url = get_real_url(rid)
-print('该直播间源地址为：')
-print(real_url)
+real_url_m3u8 = re.search(r'[a-zA-z]+:\/\/[^\s]*\.m3u8', str(real_url)).group(0)
+print(real_url_m3u8)

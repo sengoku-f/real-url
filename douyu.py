@@ -1,4 +1,5 @@
 # 获取斗鱼直播间的真实流媒体地址，默认最高画质。
+import sys
 import requests
 import re
 import execjs
@@ -82,10 +83,12 @@ class DouYu:
         else:
             key = self.get_js()
 
-        return "http://tx2play1.douyucdn.cn/live/{}.flv?uuid=".format(key)
+        return "http://tx2play1.douyucdn.cn/live/{}.m3u8?uuid=".format(key)
 
+# 获取传入参数
+douyu_url = re.search(r'douyu\.com\/(\d{1,7})', sys.argv[1]).group(1)
 
 if __name__ == '__main__':
-    r = input('输入斗鱼直播间号：\n')
+    r = douyu_url
     s = DouYu(r)
     print(s.get_real_url())
