@@ -22,6 +22,7 @@ class DouYu:
         if result:
             self.rid = result.group(1)
         else:
+            print(Exception('房间号错误'))
             raise Exception('房间号错误')
 
     @staticmethod
@@ -86,7 +87,7 @@ class DouYu:
         return "http://tx2play1.douyucdn.cn/live/{}.m3u8?uuid=".format(key)
 
 # 获取传入参数
-douyu_url = re.search(r'douyu\.com\/(\d{1,7})', sys.argv[1]).group(1)
+douyu_url = re.search(r'douyu\.com\/[^\s]*?(\d{1,7})', sys.argv[1]).group(1)
 
 if __name__ == '__main__':
     r = douyu_url
