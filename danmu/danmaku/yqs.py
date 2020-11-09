@@ -5,7 +5,7 @@ import requests
 from Crypto.Cipher import DES
 from Crypto.Util.Padding import pad
 
-from . import _173_pb2 as pb
+from . import yqs_pb2 as pb
 
 
 class YiQiShan:
